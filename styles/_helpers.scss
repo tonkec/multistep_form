@@ -1,0 +1,42 @@
+%disable-click {
+    position: absolute;
+    pointer-events: none;
+}
+  
+%enable-click {
+    pointer-events: auto;
+}
+
+@mixin validation($state, $clr) {
+    &:#{$state} {
+      color: $clr;
+      border-color: $clr;
+  
+      & ~ .msg {
+        &:before {
+          content: "Input is #{$state}";
+          background-color: lighten($clr, 10%);
+        }
+      }
+  
+      & ~ .label {
+        color: $clr;
+      }
+  
+      @if $state == "invalid" {
+        & ~ .label,
+        & ~ .button {
+          @extend %disable-click;
+        }
+  
+        & ~ .button {
+          background-color: $error-state-color;
+        }
+        
+      } @else {
+        & ~ .button {
+          @extend %enable-click;
+        }
+      }
+    }
+  }

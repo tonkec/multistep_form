@@ -1,0 +1,19 @@
+.button {
+    cursor: pointer;
+    border: none;
+    padding: 5px 10px;
+    background-color: $black;
+    color: $white;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: 0.2s ease-in-out;
+    transition-property: color, background-color;
+    position: relative;
+    z-index: 2;
+}
+
+.button {
+    @extend %disable-click;
+}
+  

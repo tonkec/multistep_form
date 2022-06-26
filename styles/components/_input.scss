@@ -1,0 +1,66 @@
+input[type="checkbox"] {
+    display: none;
+}
+
+.input {
+    border: none;
+    padding-bottom: 14px;
+    border-bottom: 3px solid $black;
+    background-color: transparent;
+    width: 100%;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+
+    &:placeholder-shown {
+        & ~ .label {
+          transform: translateY(10%);
+        }
+      }
+    
+      &:not(:placeholder-shown) {
+        // border-color: $active-state-color;
+    
+        & ~ .label {
+          // color: $active-state-color;
+          transform: translateY(-120%);
+        }
+      }
+    
+      &:focus {
+        outline: none;
+        border-color: $active-state-color;
+    
+        &:placeholder-shown {
+          outline: none;
+          @include validation(valid, $success-state-color);
+          @include validation(invalid, $error-state-color);
+    
+          & ~ .label {
+            color: $active-state-color;
+            transform: translateY(-120%);
+          }
+        }
+    }
+
+    & ~ .msg {
+        &:before {
+          position: absolute;
+          top: -100px;
+          display: block;
+          left: 0;
+          right: 0;
+          color: $white;
+          padding: 7px 15px;
+          transition: background-color 0.2s ease-in-out;
+          border-radius: 3px;
+        }
+    }
+    
+    @include validation(valid, $success-state-color);
+    
+    &:focus {
+        @include validation(valid, $success-state-color);
+        @include validation(invalid, $error-state-color);
+    }
+}
